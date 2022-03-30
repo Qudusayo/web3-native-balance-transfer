@@ -1,0 +1,25 @@
+.Navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 2em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    h2 {
+        margin: 0;
+        color: #041836;
+    }
+
+    button {
+        margin-left: 1em;
+        width: 120px;
+        font-size: 0.9em;
+        cursor: pointer;
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

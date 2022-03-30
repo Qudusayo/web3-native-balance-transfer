@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useMoralis } from "react-moralis";
+import Navbar from "./Component/Navbar/Index";
+import Transfer from "./Pages/Transfer/Index";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { enableWeb3, isWeb3Enabled } = useMoralis();
+
+    useEffect(() => {
+        if (!isWeb3Enabled) {
+            enableWeb3();
+        }
+    }, [isWeb3Enabled]);
+
+    return (
+        <>
+            <Navbar />
+            <Transfer />
+        </>
+    );
 }
 
 export default App;
