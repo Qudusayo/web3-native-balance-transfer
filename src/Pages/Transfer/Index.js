@@ -1,15 +1,16 @@
 import Moralis from "moralis";
 import { useState } from "react";
-import { useMoralis, useWeb3Transfer } from "react-moralis";
+import { useChain, useMoralis, useWeb3Transfer } from "react-moralis";
 import { Button, Input } from "web3uikit";
 import styles from "./style.module.scss";
 
 function Transfer() {
     const { isAuthenticated } = useMoralis();
-    const web3Transfer = useWeb3Transfer();
+    const { fetch } = useWeb3Transfer();
     const [amount, setAmount] = useState(0);
     const [address, setAddress] = useState("");
     const [transferring, setTransferring] = useState(false);
+    const { switchNetwork } = useChain();
 
     const setAmountHandler = (e) => {
         setAmount(e.target.value);
@@ -19,26 +20,30 @@ function Transfer() {
         setAddress(e.target.value);
     };
 
-    const transferNativeBalance = (e) => {
+    const transferNativeBalance = async (e) => {
         e.preventDefault();
         setTransferring(true);
 
-        web3Transfer.fetch({
-            params: {
-                amount: Moralis.Units.ETH(amount),
-                receiver: address,
-                type: "native",
-            },
-            onSuccess: (tx) =>
-                tx.wait().then((newTx) => {
-                    // This block will run once the transaction is completed
+        // await switchNetwork("0x3");
+
+        setTimeout(() => {
+            fetch({
+                params: {
+                    amount: Moralis.Units.ETH(amount),
+                    receiver: address,
+                    type: "native",
+                },
+                onSuccess: (tx) =>
+                    tx.wait().then((newTx) => {
+                        // This block will run once the transaction is completed
+                        setTransferring(false);
+                        console.log(newTx);
+                    }),
+                onError: () => {
                     setTransferring(false);
-                    console.log(newTx);
-                }),
-            onError: () => {
-                setTransferring(false);
-            },
-        });
+                },
+            });
+        }, 1000);
     };
 
     return (

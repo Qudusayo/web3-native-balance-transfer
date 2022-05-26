@@ -4,20 +4,20 @@ import Navbar from "./Component/Navbar/Index";
 import Transfer from "./Pages/Transfer/Index";
 
 function App() {
-    const { enableWeb3, isWeb3Enabled } = useMoralis();
+  const { enableWeb3, isWeb3Enabled, Moralis, isInitialized } = useMoralis();
 
-    useEffect(() => {
-        if (!isWeb3Enabled) {
-            enableWeb3();
-        }
-    }, [isWeb3Enabled]);
+  useEffect(() => {
+    if (!isWeb3Enabled) {
+      enableWeb3();
+    }
+  }, [isWeb3Enabled]);
 
-    return (
-        <>
-            <Navbar />
-            <Transfer />
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <Transfer />
+    </>
+  );
 }
 
 export default App;

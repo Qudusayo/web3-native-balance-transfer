@@ -6,7 +6,8 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "moralis": "^1.5.6",
+    "@walletconnect/web3-provider": "^1.7.7",
+    "moralis": "^1.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-error-overlay": "6.0.9",
@@ -14,7 +15,7 @@
     "react-scripts": "4.0.3",
     "sass": "^1.49.9",
     "web-vitals": "^2.1.0",
-    "web3uikit": "^0.1.111"
+    "web3uikit": "^0.1.153"
   },
   "scripts": {
     "start": "react-scripts start",
